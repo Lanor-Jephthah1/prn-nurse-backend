@@ -1,6 +1,6 @@
 # PRN Nurse (Pro-Renata) - Backend Service
 
-![PRN Nurse](https://img.shields.io/badge/PRN_Nurse-Healthcare_Platform-blue)
+![PRN Nurse](https://img.shields.io/badge/PRN%20Nurse-Healthcare%20Platform-blue.svg)
 ![Node.js](https://img.shields.io/badge/Node.js-18.x-green)
 ![Express](https://img.shields.io/badge/Express-4.x-lightgrey)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-brightgreen)
