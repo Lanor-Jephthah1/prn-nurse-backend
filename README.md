@@ -1,11 +1,11 @@
-# PRV Nurse - Backend Service
+# PRN Nurse (Pro-Renata) - Backend Service
 
-![PRV Nurse](https://img.shields.io/badge/PRV%20Nurse-Healthcare%20Platform-blue)
+![PRN Nurse](https://img.shields.io/badge/PRN_Nurse-Healthcare_Platform-blue)
 ![Node.js](https://img.shields.io/badge/Node.js-18.x-green)
 ![Express](https://img.shields.io/badge/Express-4.x-lightgrey)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-brightgreen)
 
-PRV Nurse is a comprehensive platform designed to bridge the gap between patients and specialized nurses. This repository contains the backend API and machine learning services powering the PRV Nurse platform.
+PRN (Pro-Renata) Nurse is a comprehensive platform designed to bridge the gap between patients and specialized nurses. This repository contains the backend API and machine learning services powering the PRN Nurse platform.
 
 ## Features
 
@@ -44,7 +44,7 @@ Set up your environment variables. Create a `.env` file in the `backend` directo
 
 ```env
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/prvnurse
+MONGO_URI=mongodb://127.0.0.1:27017/prnnurse
 JWT_SECRET=your_jwt_secret_key
 ```
 
@@ -62,7 +62,7 @@ Navigate to the `ml-service` directory:
 cd ml-service
 ```
 
-Create a virtual environment and install dependencies (e.g., using `uv` or `pip`):
+Create a virtual environment and install dependencies:
 
 ```bash
 python -m venv venv
@@ -76,13 +76,54 @@ Run the service:
 uvicorn main:app --reload --port 8000
 ```
 
-## API Documentation
+## API Usage Examples
 
-- **Authentication**: `POST /api/auth/register`, `POST /api/auth/login`, `GET /api/auth/me`
-- **Nurses**: `GET /api/nurses`, `GET /api/nurses/:id`
-- **Patients**: `GET /api/patients`
-- **Bookings**: `POST /api/bookings`, `GET /api/bookings/:id`, `PUT /api/bookings/:id/status`
-- **Admin**: `GET /api/admin/stats`
+Below are a few examples of how to interact with the API endpoints using `curl`.
+
+### 1. Register a Patient
+
+```bash
+curl -X POST http://localhost:5000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fullName": "Jane Doe",
+    "email": "jane@example.com",
+    "password": "securepassword",
+    "role": "patient"
+  }'
+```
+
+### 2. Login
+
+```bash
+curl -X POST http://localhost:5000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "jane@example.com",
+    "password": "securepassword"
+  }'
+```
+*(Response will include a JWT token)*
+
+### 3. Get Recommended Nurses
+
+```bash
+curl -X GET http://localhost:5000/api/recommendations \
+  -H "Authorization: Bearer <YOUR_JWT_TOKEN>"
+```
+
+### 4. Create a Booking
+
+```bash
+curl -X POST http://localhost:5000/api/bookings \
+  -H "Authorization: Bearer <YOUR_JWT_TOKEN>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nurseId": "64c9f1a2b3c4d5e6f7a8b9c0",
+    "date": "2026-07-01",
+    "serviceRequested": "Wound Care"
+  }'
+```
 
 ## License
 
